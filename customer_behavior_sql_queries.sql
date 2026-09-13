@@ -87,3 +87,25 @@ FROM customer
 GROUP BY age_group
 ORDER BY total_revenue desc;
 
+-- Additional Analysis: Subscription Status and Customer Spending
+
+SELECT
+    "Subscription Status",
+    COUNT("Customer ID") AS customers,
+    SUM("Purchase Amount (USD)") AS total_revenue,
+    ROUND(AVG("Purchase Amount (USD)"), 2) AS average_purchase
+FROM customer
+GROUP BY "Subscription Status"
+ORDER BY average_purchase DESC;
+
+-- Q11. What is the average purchase amount and total revenue
+-- for subscribed vs non-subscribed customers?
+
+SELECT
+    subscription_status,
+    COUNT(customer_id) AS customers,
+    SUM(purchase_amount) AS total_revenue,
+    ROUND(AVG(purchase_amount), 2) AS average_purchase
+FROM customer
+GROUP BY subscription_status
+ORDER BY average_purchase DESC;
